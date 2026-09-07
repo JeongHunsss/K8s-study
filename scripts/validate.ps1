@@ -99,12 +99,18 @@ if ($null -eq $kubectl) {
     Write-Host '[SKIP] kubectl 미설치: client dry-run은 환경 준비 후 실행됩니다.' -ForegroundColor Yellow
 }
 else {
-    & kubectl apply --dry-run=client --validate=false -f (Join-Path $repositoryRoot 'tracks/beginner/lessons/01-first-pod/manifests/namespace.yaml') *> $null
-    if ($LASTEXITCODE -ne 0) { throw 'Namespace kubectl client dry-run에 실패했습니다.' }
+    $kubectlContext = & kubectl config current-context 2>$null
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($kubectlContext)) {
+        Write-Host '[SKIP] kubectl 컨텍스트 없음: 클러스터 준비 후 client dry-run을 실행합니다.' -ForegroundColor Yellow
+    }
+    else {
+        & kubectl apply --dry-run=client --validate=false -f (Join-Path $repositoryRoot 'tracks/beginner/lessons/01-first-pod/manifests/namespace.yaml') *> $null
+        if ($LASTEXITCODE -ne 0) { throw 'Namespace kubectl client dry-run에 실패했습니다.' }
 
-    & kubectl apply --dry-run=client --validate=false -f (Join-Path $repositoryRoot 'tracks/beginner/lessons/01-first-pod/manifests/pod.yaml') *> $null
-    if ($LASTEXITCODE -ne 0) { throw 'Pod kubectl client dry-run에 실패했습니다.' }
-    Write-Host '[PASS] kubectl client dry-run'
+        & kubectl apply --dry-run=client --validate=false -f (Join-Path $repositoryRoot 'tracks/beginner/lessons/01-first-pod/manifests/pod.yaml') *> $null
+        if ($LASTEXITCODE -ne 0) { throw 'Pod kubectl client dry-run에 실패했습니다.' }
+        Write-Host "[PASS] kubectl client dry-run ($kubectlContext)"
+    }
 }
 
 Write-Host '모든 실행 가능한 검증을 통과했습니다.' -ForegroundColor Green
