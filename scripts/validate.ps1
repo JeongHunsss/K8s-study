@@ -114,3 +114,4 @@ else {
 }
 
 Write-Host '모든 실행 가능한 검증을 통과했습니다.' -ForegroundColor Green
+exit 0
