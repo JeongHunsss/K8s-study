@@ -27,7 +27,7 @@
 환경을 확인합니다.
 
 ```powershell
-./lesson-01/scripts/check-environment.ps1
+./tracks/beginner/lessons/01-first-pod/scripts/check-environment.ps1
 ```
 
 모든 항목이 `[OK]`여야 다음 단계로 진행할 수 있습니다.
@@ -56,8 +56,8 @@ Pod 매니페스트에서 다음 항목을 찾아봅니다.
 ## 3. Namespace와 Pod 만들기
 
 ```powershell
-kubectl apply -f ./lesson-01/manifests/namespace.yaml
-kubectl apply -f ./lesson-01/manifests/pod.yaml
+kubectl apply -f ./tracks/beginner/lessons/01-first-pod/manifests/namespace.yaml
+kubectl apply -f ./tracks/beginner/lessons/01-first-pod/manifests/pod.yaml
 kubectl get pods -n k8s-study --watch
 ```
 
@@ -103,7 +103,7 @@ kubectl logs web -n k8s-study
 ```powershell
 kubectl delete pod web -n k8s-study
 kubectl get pods -n k8s-study
-kubectl apply -f ./lesson-01/manifests/pod.yaml
+kubectl apply -f ./tracks/beginner/lessons/01-first-pod/manifests/pod.yaml
 kubectl wait --for=condition=Ready pod/web -n k8s-study --timeout=90s
 ```
 
