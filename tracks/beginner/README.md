@@ -5,7 +5,7 @@ Kubernetes를 처음 접하는 학습자가 로컬 클러스터에서 기본 워
 ## 트랙 정보
 
 - 대상: 컨테이너의 기본 개념을 알고 있는 Kubernetes 입문자
-- 실습 환경: Docker Desktop, kubectl, kind, PowerShell 7
+- 실습 환경: Windows 11의 Git Bash 또는 Linux/macOS Bash, Docker, kubectl, kind
 - 권장 진도: 주 1~2강, 강의당 90~120분
 - 상세 과정: [CURRICULUM.md](CURRICULUM.md)
 
