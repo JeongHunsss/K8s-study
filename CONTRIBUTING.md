@@ -32,7 +32,7 @@ tracks/<track-name>/
 1. 최신 `main`을 기준으로 `lesson/<번호>-<주제>` 브랜치를 만듭니다.
 2. 하나의 PR에는 하나의 강의 또는 하나의 공통 기반 변경만 포함합니다.
 3. 트랙 `README.md`의 강의 목록과 `CURRICULUM.md`를 함께 갱신합니다.
-4. `./scripts/validate.ps1`을 실행하고 결과를 PR 본문에 기록합니다.
+4. Git Bash에서 `./scripts/validate.sh`를 실행하고 결과를 PR 본문에 기록합니다.
 5. 검증을 통과한 PR만 `main`에 병합합니다.
 
 개인 학습 완료 여부는 공용 문서의 체크박스를 커밋하지 않고 Issue 또는 Project에서 관리합니다.

@@ -16,25 +16,25 @@
 
 - Docker Desktop이 실행 중이어야 합니다.
 - `kubectl`과 `kind`가 설치되어 있어야 합니다.
-- 저장소 루트에서 PowerShell을 실행합니다.
+- 저장소 루트에서 Git Bash를 실행합니다.
 
 설치되지 않았다면 공식 안내를 따라 준비합니다.
 
 - [Docker Desktop 설치](https://docs.docker.com/desktop/setup/install/windows-install/)
-- [Windows에 kubectl 설치](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
+- [kubectl 설치](https://kubernetes.io/docs/tasks/tools/)
 - [kind 빠른 시작](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 환경을 확인합니다.
 
-```powershell
-./tracks/beginner/lessons/01-first-pod/scripts/check-environment.ps1
+```bash
+./tracks/beginner/lessons/01-first-pod/scripts/check-environment.sh
 ```
 
 모든 항목이 `[OK]`여야 다음 단계로 진행할 수 있습니다.
 
 ## 1. 로컬 클러스터 만들기
 
-```powershell
+```bash
 kind create cluster --name k8s-study
 kubectl cluster-info --context kind-k8s-study
 kubectl get nodes
@@ -55,7 +55,7 @@ Pod 매니페스트에서 다음 항목을 찾아봅니다.
 
 ## 3. Namespace와 Pod 만들기
 
-```powershell
+```bash
 kubectl apply -f ./tracks/beginner/lessons/01-first-pod/manifests/namespace.yaml
 kubectl apply -f ./tracks/beginner/lessons/01-first-pod/manifests/pod.yaml
 kubectl get pods -n k8s-study --watch
@@ -65,7 +65,7 @@ kubectl get pods -n k8s-study --watch
 
 ## 4. Pod 관찰하기
 
-```powershell
+```bash
 kubectl get pod web -n k8s-study -o wide
 kubectl describe pod web -n k8s-study
 kubectl logs web -n k8s-study
@@ -81,16 +81,16 @@ kubectl logs web -n k8s-study
 
 ## 5. 웹 서버 접속하기
 
-첫 번째 PowerShell 창에서 포트 포워딩을 실행합니다.
+첫 번째 Git Bash 창에서 포트 포워딩을 실행합니다.
 
-```powershell
+```bash
 kubectl port-forward pod/web 8080:80 -n k8s-study
 ```
 
-두 번째 PowerShell 창에서 요청을 보냅니다.
+두 번째 Git Bash 창에서 요청을 보냅니다.
 
-```powershell
-Invoke-WebRequest http://localhost:8080 -UseBasicParsing | Select-Object StatusCode
+```bash
+curl --head http://localhost:8080
 kubectl logs web -n k8s-study
 ```
 
@@ -100,7 +100,7 @@ kubectl logs web -n k8s-study
 
 현재 Pod를 삭제하고 다시 적용합니다.
 
-```powershell
+```bash
 kubectl delete pod web -n k8s-study
 kubectl get pods -n k8s-study
 kubectl apply -f ./tracks/beginner/lessons/01-first-pod/manifests/pod.yaml
@@ -113,13 +113,13 @@ kubectl wait --for=condition=Ready pod/web -n k8s-study --timeout=90s
 
 실습 리소스만 지우려면 다음을 실행합니다.
 
-```powershell
+```bash
 kubectl delete namespace k8s-study
 ```
 
 클러스터까지 제거하려면 다음을 실행합니다.
 
-```powershell
+```bash
 kind delete cluster --name k8s-study
 ```
 
@@ -134,7 +134,7 @@ kind delete cluster --name k8s-study
 
 ## 자주 만나는 문제
 
-- `kind: command not found`: kind 설치 후 새 PowerShell 창을 엽니다.
+- `kind: command not found`: kind 설치 후 새 Git Bash 창을 엽니다.
 - Docker 연결 오류: Docker Desktop을 시작하고 엔진이 준비될 때까지 기다립니다.
 - `ImagePullBackOff`: 인터넷 연결과 `kubectl describe pod`의 Events를 확인합니다.
 - 8080 포트 사용 중: `kubectl port-forward pod/web 8081:80 -n k8s-study`처럼 로컬 포트만 바꿉니다.

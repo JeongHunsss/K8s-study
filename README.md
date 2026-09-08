@@ -20,20 +20,20 @@
 
 ## 기본 실습 환경
 
-- Windows 11 + PowerShell 7 기준으로 명령 예시 제공
+- Windows 11 + Git Bash 기준으로 Linux 스타일 명령 예시 제공
 - Docker Desktop
 - kubectl
 - kind
 - Git
 
-macOS와 Linux에서도 동일한 `kubectl`, `kind` 명령을 사용할 수 있습니다. 설치 방법은 각 도구의 공식 문서를 따릅니다.
+명령 예시는 Bash 기준이므로 macOS와 Linux에서도 같은 흐름으로 사용할 수 있습니다. Windows에서 Docker Desktop을 실행하려면 WSL 2와 CPU 가상화가 준비되어 있어야 합니다.
 
 ## 저장소 검증
 
-PowerShell에서 다음 명령을 실행합니다.
+Git Bash에서 다음 명령을 실행합니다.
 
-```powershell
-./scripts/validate.ps1
+```bash
+./scripts/validate.sh
 ```
 
 검사는 트랙 인덱스, 필수 강의 파일, 매니페스트의 핵심 구조를 확인합니다. `kubectl`이 설치되어 있으면 클라이언트 dry-run 검사도 추가로 수행합니다.
