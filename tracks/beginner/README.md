@@ -14,7 +14,7 @@ Kubernetes를 처음 접하는 학습자가 로컬 클러스터에서 기본 워
 | 강의 | 주제 | 상태 |
 |---:|---|---|
 | 1강 | [첫 Pod 실행하기](lessons/01-first-pod/README.md) | 제공 |
-| 2강 | Deployment와 자가 복구 | 예정 |
+| 2강 | [Deployment와 자가 복구](lessons/02-deployment-self-healing/README.md) | 제공 |
 | 3강 | 롤링 업데이트와 롤백 | 예정 |
 | 4강 | Service와 클러스터 네트워크 | 예정 |
 | 5강 | Ingress와 로컬 라우팅 | 예정 |
